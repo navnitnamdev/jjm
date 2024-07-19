@@ -90,8 +90,7 @@ class Logincontroller extends GetxController {
       BuildContext context, String hashpassword, String RandomNumbersalt) {
     Apiservice.Loginapi(context, emailcontroller.text.trim().toString(),
             hashpassword, RandomNumbersalt)
-        .then((value)
-    {
+        .then((value) {
       if (value["Status"].toString() == "true") {
         cleartable_localmasterschemelisttable();
         box.write("Status", value["Status"].toString());
@@ -102,9 +101,6 @@ class Logincontroller extends GetxController {
         box.write("TotalOfflineVillage", value["TotalOfflineVillage"].toString());
         box.write('loginBool', true);
         {
-
-
-
           showDialog(
             context: context,
             builder: (BuildContext builderContext) {
@@ -148,8 +144,10 @@ class Logincontroller extends GetxController {
                         value.villageDetails![i]!.totalNoOfWaterSource;
                     var totalWsGeoTagged =
                         value.villageDetails![i]!.totalWsGeoTagged;
-                    var pendingWsTotal = value.villageDetails![i]!.pendingWsTotal;
-                    var balanceWsTotal = value.villageDetails![i]!.balanceWsTotal;
+                    var pendingWsTotal =
+                        value.villageDetails![i]!.pendingWsTotal;
+                    var balanceWsTotal =
+                        value.villageDetails![i]!.balanceWsTotal;
                     var totalSsGeoTagged =
                         value.villageDetails![i]!.totalSsGeoTagged;
                     var pendingApprovalSsTotal =
@@ -158,11 +156,14 @@ class Logincontroller extends GetxController {
                         value.villageDetails![i]!.totalIbRequiredGeoTagged;
                     var totalIbGeoTagged =
                         value.villageDetails![i]!.totalIbGeoTagged;
-                    var pendingIbTotal = value.villageDetails![i]!.pendingIbTotal;
-                    var balanceIbTotal = value.villageDetails![i]!.balanceIbTotal;
+                    var pendingIbTotal =
+                        value.villageDetails![i]!.pendingIbTotal;
+                    var balanceIbTotal =
+                        value.villageDetails![i]!.balanceIbTotal;
                     var totalOaGeoTagged =
                         value.villageDetails![i]!.totalOaGeoTagged;
-                    var balanceOaTotal = value.villageDetails![i]!.balanceOaTotal;
+                    var balanceOaTotal =
+                        value.villageDetails![i]!.balanceOaTotal;
                     var totalNoOfSchoolScheme =
                         value.villageDetails![i]!.totalNoOfSchoolScheme;
                     var totalNoOfPwsScheme =
@@ -204,8 +205,10 @@ class Logincontroller extends GetxController {
                     var villageid = value.schmelist![i]!.villageId;
                     var schemenamenew = value.schmelist![i]!.schemename;
                     var schemenacategorynew = value.schmelist![i]!.category;
-                    var SourceTypeCategoryId = value.schmelist![i]!.SourceTypeCategoryId;
-                    var source_typeCategory = value.schmelist![i]!.source_typeCategory;
+                    var SourceTypeCategoryId =
+                        value.schmelist![i]!.SourceTypeCategoryId;
+                    var source_typeCategory =
+                        value.schmelist![i]!.source_typeCategory;
 
                     databaseHelperJalJeevan
                         ?.insertMasterSchmelist(Localmasterdatamoda_Scheme(
@@ -278,7 +281,8 @@ class Logincontroller extends GetxController {
                   for (int i = 0; i < value.habitationlist!.length; i++) {
                     var villafgeid = value.habitationlist![i]!.villageId;
                     var habitationId = value.habitationlist![i]!.habitationId;
-                    var habitationName = value.habitationlist![i]!.habitationName;
+                    var habitationName =
+                        value.habitationlist![i]!.habitationName;
 
                     databaseHelperJalJeevan?.insertMasterhabitaionlist(
                         LocalHabitaionlistModal(
@@ -299,7 +303,8 @@ class Logincontroller extends GetxController {
                                 .toString(),
                             districtName:
                                 value.informationBoardList![i]!.districtName,
-                            blockName: value.informationBoardList![i]!.blockName,
+                            blockName:
+                                value.informationBoardList![i]!.blockName,
                             panchayatName:
                                 value.informationBoardList![i]!.panchayatName,
                             villageName:
@@ -369,9 +374,11 @@ class Logincontroller extends GetxController {
 
       mainListsourcecategory = mResposne["Result"];
 
-      getSourceCategoryModal = GetSourceCategoryModal.fromJson(jsonDecode(response.body));
+      getSourceCategoryModal =
+          GetSourceCategoryModal.fromJson(jsonDecode(response.body));
 
-      await databaseHelperJalJeevan?.insertData_mastersource_categorytype_inDB(getSourceCategoryModal!)
+      await databaseHelperJalJeevan
+          ?.insertData_mastersource_categorytype_inDB(getSourceCategoryModal!)
           .then((value) {});
 
       for (int i = 0; i < mainListsourcecategory.length; i++) {
@@ -429,8 +436,6 @@ class Logincontroller extends GetxController {
     await databaseHelperJalJeevan!.duplicate_entryofdashboarDB();
   }
 
-
-
   Future<void> showalertdialog_workingvillzero(BuildContext context) async {
     return showDialog<void>(
       context: context,
@@ -469,7 +474,7 @@ class Logincontroller extends GetxController {
                     padding: const EdgeInsets.all(10.0),
                     child: Text(
                       textAlign: TextAlign.justify,
-                      " Please select maximum ${totalvillages} villages at a time where to geotagging of assets.",
+                      "Please select maximum ${totalvillages} villages at a time where to geotagging of assets.",
                       style: const TextStyle(
                         fontSize: 18,
                         color: Appcolor.black,
@@ -516,10 +521,9 @@ class Logincontroller extends GetxController {
   }
 
   Future getsourcetyprASSETApi(
-      BuildContext context,
-      String token,
-      ) async {
-
+    BuildContext context,
+    String token,
+  ) async {
     var uri = Uri.parse(
         '${Apiservice.baseurl}Master/Get_AssetTaggingType?UserId=' +
             box.read("userid"));
@@ -532,20 +536,19 @@ class Logincontroller extends GetxController {
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> mResposne = jsonDecode(response.body);
-    /*  if (mResposne["Status"].toString() == "false") {
+      /*  if (mResposne["Status"].toString() == "false") {
         setState(() {
           Get.offAll(LoginScreen());
           box.remove("UserToken").toString();
         });
       } else {*/
-        Listofsourcetype = mResposne["Result"];
-        savesourcetypemodal =
-            Savesourcetypemodal.fromJson(jsonDecode(response.body));
-        await databaseHelperJalJeevan
-            ?.insertData_mastersourcetype_inDB(savesourcetypemodal!);
-        return jsonDecode(response.body);
+      Listofsourcetype = mResposne["Result"];
+      savesourcetypemodal =
+          Savesourcetypemodal.fromJson(jsonDecode(response.body));
+      await databaseHelperJalJeevan
+          ?.insertData_mastersourcetype_inDB(savesourcetypemodal);
+      return jsonDecode(response.body);
       //}
     }
-
   }
 }

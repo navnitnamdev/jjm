@@ -2163,8 +2163,7 @@ class _CommonallofflineentriesState extends State<Commonallofflineentries>
 
         if (response["Status"].toString() == "true") {
           successfulUploadCount++;
-          await databaseHelperJalJeevan
-              ?.truncateTableByVillageId_sibsaved(localData.schemeId);
+          await databaseHelperJalJeevan?.truncateTableByVillageId_sibsaved(localData.schemeId);
         } else {
           await databaseHelperJalJeevan?.updateStatusInPendingListsib(
               localData.villageId,

@@ -150,38 +150,6 @@ class DatabaseHelperJalJeevan {
     print('Table altered successfully');
   }
 
-/*
-  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion < newVersion) {
-      print("Upgrading database from version $oldVersion to $newVersion...");
-
-      // Check if the necessary columns exist in 'localmasterschemelist'
-      List<Map<String, dynamic>> columns = await db.rawQuery('PRAGMA table_info(localmasterschemelist)');
-
-      bool hasSourceTypeColumn = columns.any((column) => column['name'] == 'source_type');
-      bool hasSourceTypeCategoryId = columns.any((column) => column['name'] == 'SourceTypeCategoryId');
-      bool hasSource_typeCategory = columns.any((column) => column['name'] == 'source_typeCategory');
-
-      // Add columns if they do not exist
-      if (!hasSourceTypeColumn) {
-        print("Adding source_type column to localmasterschemelist...");
-        await db.execute('ALTER TABLE localmasterschemelist ADD COLUMN source_type TEXT');
-      }
-      if (!hasSourceTypeCategoryId) {
-        print("Adding source_typeID column to localmasterschemelist...");
-        await db.execute('ALTER TABLE localmasterschemelist ADD COLUMN SourceTypeCategoryId TEXT');
-      }
-      if (!hasSource_typeCategory) {
-        print("Adding source_cat column to localmasterschemelist...");
-        await db.execute('ALTER TABLE localmasterschemelist ADD COLUMN source_typeCategory TEXT');
-      }
-
-
-      print("Database upgraded successfully.");
-    }
-  }
-*/
-
 
   Future<Localmasterdatetime> insertMasterapidatetime(
       Localmasterdatetime localmasterdatetime) async {
@@ -549,14 +517,12 @@ class DatabaseHelperJalJeevan {
     await dbClient!.rawDelete(query);
   }
 
-  Future<void> clearDuplicateEntriesForSchemeId(
-      String schemeId, String villageId) async {
+  Future<void> clearDuplicateEntriesForSchemeId(String schemeId, String villageId) async {
     var dbClient = await db;
     await _removeDuplicateEntriesForSchemeId(dbClient!, schemeId, villageId);
   }
 
-  Future<void> _removeDuplicateEntriesForSchemeId(
-      Database db, String schemeId, String villageId) async {
+  Future<void> _removeDuplicateEntriesForSchemeId(Database db, String schemeId, String villageId) async {
     List<Map<String, dynamic>> schemeItems = await db.query(
       'localmasterschemelist',
       where: 'SchemeId = ? AND VillageId = ?',

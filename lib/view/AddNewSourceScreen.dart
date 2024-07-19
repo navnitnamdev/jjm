@@ -1873,7 +1873,7 @@ class _AddNewSourceScreenState extends State<AddNewSourceScreen> {
                             width: 200,
                             child: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
-                                primary: Appcolor.orange,
+                                backgroundColor: Appcolor.orange,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),

@@ -30,6 +30,8 @@ class PointsAndLines extends StatelessWidget {
   GetStorage box = GetStorage();
   var str = ['1', '2', '3', '4'];
 
+  PointsAndLines({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,7 +45,7 @@ class PointsAndLines extends StatelessWidget {
   List<Widget> _buildPointsAndLines() {
     List<Widget> widgets = [];
     for (int i = 0; i < numberOfPoints; i++) {
-      widgets.add(_buildPoint(str![i]!));
+      widgets.add(_buildPoint(str[i]));
       if (i < numberOfPoints - 1) {
         widgets.add(_buildLine());
       }
@@ -118,9 +120,9 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
   final List<TextEditingController> namecontroller = [TextEditingController()];
   final List<TextEditingController> fathernamecontroller = [];
   final List<TextEditingController> addresscontroller = [];
-  List<String> nameinputs = List.generate(10, (index) => "");
-  List<String> fatherinputs = List.generate(10, (index) => "");
-  List<String> addressinputs = List.generate(10, (index) => "");
+  List<String> nameinputs = List.generate(4, (index) => "");
+  List<String> fatherinputs = List.generate(4, (index) => "");
+  List<String> addressinputs = List.generate(4, (index) => "");
 
   var increasehousehold;
 
@@ -164,13 +166,6 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
   late Adddisinfectionhouseholdmodal adddisinfectionhouseholdmodal;
   List<int> Adddisinfectionconatiner = [];
   List<Adddisinfectionhouseholdmodal> adddisinfectionhouseholdlist = [];
-  List<Map<String, String>> inputList = List.generate(
-      10,
-      (index) => {
-            'name': '',
-            'fathername': '',
-            'address': '',
-          });
 
   bool viewVisible = true;
   bool assetvisibility = false;
@@ -183,9 +178,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
   bool Geotagdisinfectvisible = false;
   bool Clickimagevisibile = false;
   bool othermethodbasedvisibility = false;
-
   var methoddisinfectvalue;
-
   bool locationdis = true;
 
   bool chlrinationreagentdropdownvisible = true;
@@ -204,7 +197,6 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
 
   @override
   void dispose() {
-    // Dispose all controllers to prevent memory leaks
     for (var controller in namecontroller) {
       controller.dispose();
     }
@@ -468,12 +460,10 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                 children: [
                   Row(
                     children: [
-                      Container(
-                        child: Image.asset(
-                          'images/bharat.png',
-                          width: 60,
-                          height: 60,
-                        ),
+                      Image.asset(
+                        'images/bharat.png',
+                        width: 60,
+                        height: 60,
                       ),
                       const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -853,9 +843,6 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                               color: Appcolor.lightgrey,
                               thickness: 1,
                             ),
-                            /* for (var i = 0; i < _controllers.length; i++) {
-            print('Field $i: ${_controllers[i].text}');
-          }*/
                             Container(
                               margin: const EdgeInsets.all(5),
                               child: Column(
@@ -874,7 +861,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                         children: <TextSpan>[
                                           TextSpan(
                                               text: "Test Data",
-                                              style: new TextStyle(
+                                              style: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 14,
                                                   color: Appcolor.btncolor)),
@@ -890,7 +877,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                   Column(
                                     children: [
                                       ListView.builder(
-                                          itemCount: 1,
+                                          itemCount: 2,
                                           shrinkWrap: true,
                                           physics:
                                               const NeverScrollableScrollPhysics(),
@@ -973,7 +960,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                           )
                                                         ],
                                                       ),
-                                                      Row(
+                                                      const Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .start,
@@ -981,7 +968,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          const Padding(
+                                                          Padding(
                                                               padding: EdgeInsets
                                                                   .only(
                                                                       left: 10,
@@ -996,7 +983,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 "chlorination reagent :",
-                                                                style: const TextStyle(
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -1007,9 +994,8 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                               )),
                                                           Flexible(
                                                             child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
+                                                              padding: EdgeInsets
+                                                                  .only(
                                                                       left: 10,
                                                                       bottom: 5,
                                                                       top: 5),
@@ -1022,7 +1008,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 "Chlorine gas",
-                                                                style: const TextStyle(
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w400,
@@ -1035,7 +1021,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                           )
                                                         ],
                                                       ),
-                                                      Row(
+                                                      const Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .start,
@@ -1044,38 +1030,37 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                                 .start,
                                                         children: [
                                                           Flexible(
-                                                            child:
-                                                                const Padding(
-                                                                    padding: EdgeInsets.only(
+                                                            child: Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
                                                                         left:
                                                                             10,
                                                                         bottom:
                                                                             5,
                                                                         top: 5),
-                                                                    child: Text(
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .start,
-                                                                      maxLines:
-                                                                          5,
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      "Habitation :",
-                                                                      style: const TextStyle(
-                                                                          fontWeight: FontWeight
+                                                                child: Text(
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .start,
+                                                                  maxLines: 5,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  "Habitation :",
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
                                                                               .bold,
-                                                                          fontSize:
-                                                                              14,
-                                                                          color:
-                                                                              Appcolor.black),
-                                                                    )),
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Appcolor
+                                                                          .black),
+                                                                )),
                                                           ),
                                                           Flexible(
                                                             child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
+                                                              padding: EdgeInsets
+                                                                  .only(
                                                                       left: 10,
                                                                       bottom: 5,
                                                                       top: 5),
@@ -1088,7 +1073,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 "64 MILE CAMP",
-                                                                style: const TextStyle(
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w400,
@@ -1101,7 +1086,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                           )
                                                         ],
                                                       ),
-                                                      Row(
+                                                      const Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .start,
@@ -1109,7 +1094,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          const Padding(
+                                                          Padding(
                                                               padding: EdgeInsets
                                                                   .only(
                                                                       left: 10,
@@ -1124,7 +1109,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 "Latitude :",
-                                                                style: const TextStyle(
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -1135,9 +1120,8 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                               )),
                                                           Flexible(
                                                             child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
+                                                              padding: EdgeInsets
+                                                                  .only(
                                                                       left: 10,
                                                                       bottom: 5,
                                                                       top: 5),
@@ -1150,7 +1134,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 "28.5900519",
-                                                                style: const TextStyle(
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w400,
@@ -1163,7 +1147,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                           )
                                                         ],
                                                       ),
-                                                      Row(
+                                                      const Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .start,
@@ -1171,7 +1155,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          const Padding(
+                                                          Padding(
                                                               padding: EdgeInsets
                                                                   .only(
                                                                       left: 10,
@@ -1186,7 +1170,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 "Longitude :",
-                                                                style: const TextStyle(
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -1197,9 +1181,8 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                               )),
                                                           Flexible(
                                                             child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
+                                                              padding: EdgeInsets
+                                                                  .only(
                                                                       left: 10,
                                                                       bottom: 5,
                                                                       top: 5),
@@ -1212,7 +1195,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 "77.2290081",
-                                                                style: const TextStyle(
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w400,
@@ -1238,7 +1221,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                                             style:
                                                                 ElevatedButton
                                                                     .styleFrom(
-                                                              primary:
+                                                              backgroundColor:
                                                                   Appcolor.pink,
                                                               shape:
                                                                   RoundedRectangleBorder(
@@ -1346,7 +1329,6 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                   onChanged: (value) {
                                     setState(() {
                                       methoddisinfectvalue = value.toString();
-                                      print("ffff_1" + methoddisinfectvalue);
                                       chlorinebasedvisibility = true;
                                       othermethodbasedvisibility = false;
 
@@ -1466,7 +1448,6 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                   onChanged: (value) {
                                     setState(() {
                                       Othersmain = value.toString();
-                                      print("type_of_chlo" + Othersmain);
                                       chlrinationreagentdropdownvisible = true;
                                       householdlistvisibility = true;
                                       locationdisvisibility = true;
@@ -1484,7 +1465,6 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                   onChanged: (value) {
                                     setState(() {
                                       Othersmain = value.toString();
-                                      print("type_of_chlo" + Othersmain);
                                       chlrinationreagentdropdownvisible = true;
                                       householdlistvisibility = true;
                                       locationdisvisibility = true;
@@ -1756,119 +1736,126 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                             shrinkWrap: true,
                             itemBuilder: (context, int index) {
                               return Card(
-                                elevation: 5,
-                                surfaceTintColor: Colors.white,
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                margin: const EdgeInsets.only(
+                                    top: 5, left: 0, bottom: 10, right: 0),
+                                elevation: 8,
+                                shadowColor: Appcolor.black,
+                                surfaceTintColor: Colors.white.withOpacity(.5),
+                                //surfaceTintColor:    Colors.yellow ,
                                 shape: const RoundedRectangleBorder(
+                                  side: BorderSide(
+                                    color: Colors.black,
+                                    width: .5,
+                                  ),
                                   borderRadius: BorderRadius.only(
                                       bottomRight: Radius.circular(5),
                                       topRight: Radius.circular(5),
                                       topLeft: Radius.circular(5),
                                       bottomLeft: Radius.circular(5)),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(
-                                            left: 5, bottom: 10, right: 5),
-                                        width: double.infinity,
-                                        height: 45,
-                                        child: TextFormField(
-                                          inputFormatters: <TextInputFormatter>[
-                                            FirstNonNumericalFormatter(),
-                                          ],
-                                          //   controller: namecontroller[index],
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade100,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                child: Container(
+                                  margin: const EdgeInsets.only(
+                                      top: 10, left: 0, bottom: 5, right: 0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          margin: const EdgeInsets.only(
+                                              left: 5, bottom: 10, right: 5),
+                                          width: double.infinity,
+                                          height: 45,
+                                          child: TextFormField(
+                                            inputFormatters: <TextInputFormatter>[
+                                              FirstNonNumericalFormatter(),
+                                            ],
+                                            //   controller: namecontroller[index],
+                                            decoration: InputDecoration(
+                                              fillColor: Colors.grey.shade100,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              hintText: "Enter name",
+                                              hintStyle: const TextStyle(
+                                                  color: Appcolor.grey,
+                                                  fontWeight: FontWeight.w400),
                                             ),
-                                            hintText: "Enter name",
-                                            hintStyle: const TextStyle(
-                                                color: Appcolor.grey,
-                                                fontWeight: FontWeight.w400),
-                                          ),
 
-                                          keyboardType:
-                                              TextInputType.visiblePassword,
-                                          textInputAction: TextInputAction.done,
-                                          onChanged: (value) {
-                                            nameinputs[index] = value;
-                                            if (nameinputs[index]
-                                                .toString()
-                                                .isEmpty) {
-                                              print("namam");
-                                              Adddisinfectionhouseholdmodal(
-                                                  nameinputs[index], "", "");
-                                            }
-                                          },
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(
-                                            left: 5, bottom: 10, right: 5),
-                                        width: double.infinity,
-                                        height: 45,
-                                        child: TextFormField(
-                                          inputFormatters: <TextInputFormatter>[
-                                            FirstNonNumericalFormatter(),
-                                          ],
-                                          //controller: fathernamecontroller[index],
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade100,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            hintText: "Enter father name",
-                                            hintStyle: const TextStyle(
-                                                color: Appcolor.grey,
-                                                fontWeight: FontWeight.w400),
+                                            keyboardType:
+                                                TextInputType.visiblePassword,
+                                            textInputAction:
+                                                TextInputAction.done,
+                                            onChanged: (value) {
+                                              nameinputs[index] = value;
+                                              print("fot" +
+                                                  nameinputs.toString());
+                                            },
                                           ),
-                                          keyboardType:
-                                              TextInputType.visiblePassword,
-                                          textInputAction: TextInputAction.done,
-                                          onChanged: (value) {
-                                            fatherinputs[index] = value;
-                                            Adddisinfectionhouseholdmodal(
-                                                '', fatherinputs[index], '');
-                                          },
                                         ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(
-                                            left: 5, bottom: 10, right: 5),
-                                        width: double.infinity,
-                                        height: 45,
-                                        child: TextFormField(
-                                          inputFormatters: <TextInputFormatter>[
-                                            FirstNonNumericalFormatter(),
-                                          ],
-                                          //controller: addresscontroller[index],
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade100,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                        Container(
+                                          margin: const EdgeInsets.only(
+                                              left: 5, bottom: 10, right: 5),
+                                          width: double.infinity,
+                                          height: 45,
+                                          child: TextFormField(
+                                            inputFormatters: <TextInputFormatter>[
+                                              FirstNonNumericalFormatter(),
+                                            ],
+                                            //controller: fathernamecontroller[index],
+                                            decoration: InputDecoration(
+                                              fillColor: Colors.grey.shade100,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              hintText: "Enter father name",
+                                              hintStyle: const TextStyle(
+                                                  color: Appcolor.grey,
+                                                  fontWeight: FontWeight.w400),
                                             ),
-                                            hintText: "Enter address",
-                                            hintStyle: const TextStyle(
-                                                color: Appcolor.grey,
-                                                fontWeight: FontWeight.w400),
+                                            keyboardType:
+                                                TextInputType.visiblePassword,
+                                            textInputAction:
+                                                TextInputAction.done,
+                                            onChanged: (value) {
+                                              fatherinputs[index] = value;
+                                            },
                                           ),
-                                          keyboardType:
-                                              TextInputType.visiblePassword,
-                                          textInputAction: TextInputAction.done,
-                                          onChanged: (value) {
-                                            addressinputs[index] = value;
-                                            Adddisinfectionhouseholdmodal(
-                                                '', '', addressinputs[index]);
-                                          },
                                         ),
-                                      ),
-                                    ],
+                                        Container(
+                                          margin: const EdgeInsets.only(
+                                              left: 5, bottom: 10, right: 5),
+                                          width: double.infinity,
+                                          height: 45,
+                                          child: TextFormField(
+                                            inputFormatters: <TextInputFormatter>[
+                                              FirstNonNumericalFormatter(),
+                                            ],
+                                            //controller: addresscontroller[index],
+                                            decoration: InputDecoration(
+                                              fillColor: Colors.grey.shade100,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              hintText: "Enter address",
+                                              hintStyle: const TextStyle(
+                                                  color: Appcolor.grey,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            keyboardType:
+                                                TextInputType.visiblePassword,
+                                            textInputAction:
+                                                TextInputAction.done,
+                                            onChanged: (value) {
+                                              addressinputs[index] = value;
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
@@ -1877,38 +1864,68 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  increasehousehold = increasehousehold++;
+                          Adddisinfectionconatiner.length == 4
+                              ? SizedBox()
+                              : GestureDetector(
+                                  onTap: () {
+                                    bool isValidate = false;
+                                    if (Adddisinfectionconatiner.length < 4) {
+                                      isValidate = true;
+                                      for (int i = 0;
+                                          i < Adddisinfectionconatiner.length;
+                                          i++) {
+                                        if (nameinputs[i].isEmpty) {
+                                          Stylefile
+                                              .showmessageforvalidationfalse(
+                                                  context, "Enter name");
+                                          isValidate = false;
+                                          print(
+                                              "namos" + isValidate.toString());
+                                          print("namos_nameinputs[i]" +
+                                              nameinputs[i].toString());
+                                          break;
+                                        } else if (fatherinputs[i].isEmpty) {
+                                          Stylefile
+                                              .showmessageforvalidationfalse(
+                                                  context, "Enter father's name");
+                                          isValidate = false;
+                                          break;
+                                        } else if (addressinputs[i].isEmpty) {
+                                          Stylefile
+                                              .showmessageforvalidationfalse(
+                                                  context, "Enter address");
+                                          isValidate = false;
+                                          break;
+                                        } else {
+                                          adddisinfectionhouseholdlist.add(
+                                              Adddisinfectionhouseholdmodal(
+                                                  nameinputs[i],
+                                                  fatherinputs[i],
+                                                  addressinputs[i]));
 
-                                  if (Adddisinfectionconatiner.length < 4) {
-                                    for (int i = 0; i < Adddisinfectionconatiner.length; i++) {
-                                      if(nameinputs[i].isEmpty)
-                                    {
-                                     Stylefile.showmessageforvalidationfalse(context, "Enter name");
-                                    }else if(fatherinputs[i].isEmpty){
-                                     Stylefile.showmessageforvalidationfalse(context, "Enter father name");
-                                      }else if(addressinputs[i].isEmpty){
-                                       Stylefile.showmessageforvalidationfalse(context, "Enter address");
+                                          print("addedlist" +
+                                              adddisinfectionhouseholdlist
+                                                  .toString());
+                                        }
                                       }
-                                      else{
-                                        adddisinfectionhouseholdlist.add(Adddisinfectionhouseholdmodal(nameinputs[i], fatherinputs[i], addressinputs[i]));
-                                        print("chemu");
-                                        print(adddisinfectionhouseholdlist);
-                                        Adddisinfectionconatiner.add(increasehousehold);
+
+                                      if (isValidate) {
+                                        setState(() {
+                                          print("namos_00" +
+                                              isValidate.toString());
+                                          Adddisinfectionconatiner.add(increasehousehold);
+                                        });
                                       }
+                                    } else {
+                                      Stylefile.showmessageforvalidationfalse(
+                                          context, "You cannot add more");
                                     }
-                                  } else {
-                                    Stylefile.showmessageforvalidationfalse(context, "You can not add more");
-                                  }
-                                });
-                              },
-                              child: const Icon(
-                                Icons.add_circle,
-                                size: 30,
-                                color: Appcolor.greenmessagecolor,
-                              )),
+                                  },
+                                  child: const Icon(
+                                    Icons.add_circle,
+                                    size: 30,
+                                    color: Appcolor.greenmessagecolor,
+                                  )),
                           const SizedBox(
                             width: 10,
                           ),
@@ -1918,20 +1935,21 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                 increasehousehold = increasehousehold--;
 
                                 if (Adddisinfectionconatiner.length > 1) {
-                                  Adddisinfectionconatiner.removeAt(increasehousehold);
+                                  Adddisinfectionconatiner.removeAt(
+                                      increasehousehold);
                                   for (int i = 0; i < Adddisinfectionconatiner.length; i++) {
                                     adddisinfectionhouseholdlist.removeAt(i);
-                                    print(adddisinfectionhouseholdlist);
+                                    print("removedata" +adddisinfectionhouseholdlist.toString());
                                   }
                                 } else {
                                   Stylefile.showmessageforvalidationfalse(
-                                      context, "You can not remove");
+                                      context, "Can not be remove");
                                 }
                               },
                               child: const Icon(
-                                Icons.clear,
+                                Icons.close ,
                                 size: 30,
-                                color: Appcolor.red,
+                                color: Appcolor.redone,
                               )),
                         ],
                       )
@@ -2137,15 +2155,14 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                                           }).toList(),
                                           onChanged: (Schememodal? newValue) {
                                             setState(() {
-
-
                                               schememodal = newValue!;
-                                              _mySchemeid = newValue.Schemeid.toString();
-                                              selectschamename = newValue.Schemename;
-                                              selectcategoryname = newValue.Category.toString();
+                                              _mySchemeid =
+                                                  newValue.Schemeid.toString();
+                                              selectschamename =
+                                                  newValue.Schemename;
+                                              selectcategoryname =
+                                                  newValue.Category.toString();
                                             });
-
-
                                           }),
                                     ),
                                   ],
@@ -2577,7 +2594,7 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Center(
@@ -2605,7 +2622,8 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                               fathernamecontroller.clear();
                               addresscontroller.clear();
                             }
-                            /*   if (selecthabitaionname ==
+
+                          },  /*   if (selecthabitaionname ==
                             "-- Select Habitation --") {
                             Stylefile
                                 .showmessageforvalidationfalse(
@@ -2626,7 +2644,6 @@ class _DisinfectionTagwaterState extends State<DisinfectionTagwater> {
                             context,
                             "Please select image");
                             }*/
-                          },
                           child: const Text(
                             'Save ',
                             style: TextStyle(

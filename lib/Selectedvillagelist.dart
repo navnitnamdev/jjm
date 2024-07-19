@@ -504,19 +504,19 @@ class _SelectedvillaglistState extends State<Selectedvillaglist> {
                                                                                     var villagename = offlinevillagelistlist[index].villageName.toString();
                                                                                     print("villageid >"+offlinevillagelistlist[index].villageId.toString());
 
-                                                                                    Get.to(VillageDetails(
+                                                                                  /*  Get.to(VillageDetails(
                                                                                       villageid: offlinevillagelistlist[index].villageId.toString(),
                                                                                       villagename: villagename,
                                                                                       stateid: box.read("stateid"),
                                                                                       userID: userId,
                                                                                       token: usertoken,
                                                                                     ));
-
-                                                                                /*    Get.to(DisinfectionTagwater(villageid: offlinevillagelistlist[index].villageId.toString(),
+                                                                                             */
+                                                                                    Get.to(DisinfectionTagwater(villageid: offlinevillagelistlist[index].villageId.toString(),
                                                                                       villagename: villagename,
                                                                                       stateid: box.read("stateid"),
                                                                                       userID: userId,
-                                                                                      token: usertoken,));*/
+                                                                                      token: usertoken,));
                                                                                   },
                                                                                   child: Container(
                                                                                     margin: const EdgeInsets.all(10),

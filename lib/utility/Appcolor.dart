@@ -30,6 +30,7 @@ class Appcolor{
   static const Color dark = Color(0xff565350);
   static const Color greenlight = Color(0xff7c9305);
   static const Color greysec = Color(0xffd7d5d5);
+  static const Color redone = Color(0xffff0000);
 
 
 
